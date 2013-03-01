@@ -15,6 +15,7 @@
     <title><%= app.name %></title>
 
     <link href="/stylesheets/app.css" rel="stylesheet" media="all">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <script>
       (function() {
@@ -74,18 +75,11 @@
         <% if(user) { %>
         <h1>Welkom <%= user.first_name %>!<br><span>Volg de instructies hieronder om mee te doen aan de prijsvraag.</span></h1>
         <% } else { %>
-        <h1>Log in om mee te doen aan de prijsvraag!</h1>
-        <% } %>
-      </div>
-
-      <div class="action">
-        <% if(!user) { %>
-        <div class="fb fb-login-button" data-scope="user_likes,user_about_me,email,publish_actions"></div>
+        <h1>Welkom!<br><span>Volg de instructies hieronder om mee te doen aan de prijsvraag.</span></h1>
         <% } %>
       </div>
     </header>
 
-    <% if(user) { %>
     <section class="row">
       <h2><span>1</span> Like de pagina</h2>
       <p>
@@ -93,13 +87,11 @@
       </p>
     </section>
 
-    <section class="row" id="formulier">
+    <section class="row" id="formulier" <% if(typeof signed_request !== 'undefined' && signed_request.page.liked !== true) { %>style="display: none;"<% } %>>
       <h2><span>2</span> Vul het formulier in</h2>
       <iframe width="100%" height="425px" src="http://www.ymere.nl/projectinschrijvingen/?id=147" scrolling="no" frameborder="0"></iframe>
     </section>
-    <% } %>
+
     <!-- £ -->
   </body>
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </html>
